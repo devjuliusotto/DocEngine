@@ -4,8 +4,8 @@
 
 :root {
   color-scheme: light;
-  background: #fffdf7;
-  color: #111827;
+  background: #ffffff;
+  color: #000000;
 }
 
 * {
@@ -19,21 +19,21 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  background:
-    linear-gradient(180deg, rgba(240, 249, 255, 0.9), rgba(255, 253, 247, 0.95) 34rem),
-    #fffdf7;
-  color: #111827;
+  background: #ffffff;
+  color: #000000;
   font-size: 18px;
+  font-family: var(--font-roboto-condensed), "Arial Narrow", Arial, sans-serif;
+  line-height: 1.55;
 }
 
 :focus-visible {
-  outline: 4px solid #075985;
+  outline: 4px solid #cfff48;
   outline-offset: 4px;
 }
 
 ::selection {
-  background: #fde68a;
-  color: #111827;
+  background: #cfff48;
+  color: #000000;
 }
 
 button,
@@ -41,6 +41,20 @@ input,
 select,
 textarea {
   font: inherit;
+}
+
+.headline {
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.section-rule::after {
+  content: "";
+  display: block;
+  height: 6px;
+  width: 100%;
+  margin-top: 1rem;
+  background: #000000;
 }
 
 @media (prefers-reduced-motion: reduce) {

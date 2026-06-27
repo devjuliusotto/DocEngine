@@ -2,8 +2,15 @@
 
 import { Upload } from "lucide-react";
 import { ChangeEvent, DragEvent, useRef, useState } from "react";
+import { BigActionButton } from "@/components/BigActionButton";
 
-export function FileDropzone({ onFile }: { onFile: (file: File) => void }) {
+export function FileDropzone({
+  onFile,
+  state = "active"
+}: {
+  onFile: (file: File) => void;
+  state?: "active" | "done" | "future";
+}) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [isDragging, setIsDragging] = useState(false);
 
@@ -32,15 +39,29 @@ export function FileDropzone({ onFile }: { onFile: (file: File) => void }) {
       }}
       onDragLeave={() => setIsDragging(false)}
       onDrop={onDrop}
-      className={`rounded-md border-4 border-dashed p-8 text-center transition ${
-        isDragging ? "border-ocean bg-sky-100" : "border-ink/25 bg-white"
+      className={`rounded-sm border-4 border-dashed p-7 text-center transition sm:p-10 ${
+        isDragging
+          ? "border-black bg-lime"
+          : state === "done"
+            ? "border-black bg-white"
+            : "border-black bg-soft-gray"
       }`}
     >
-      <Upload aria-hidden="true" className="mx-auto text-ocean" size={58} />
-      <h2 className="mt-4 text-3xl font-black tracking-normal">1. Escolher arquivo</h2>
-      <p className="mx-auto mt-3 max-w-2xl text-xl leading-relaxed">
-        Arraste o arquivo para esta área ou use o botão abaixo.
-      </p>
+      <div className="mx-auto flex max-w-3xl flex-col items-center">
+        <Upload aria-hidden="true" className="text-black" size={64} />
+        <div className="mt-5 flex items-start gap-4 text-left">
+          <span className="headline text-5xl font-black leading-none sm:text-6xl">01</span>
+          <div>
+            <h2 className="headline text-3xl font-black leading-tight sm:text-4xl">
+              Escolher arquivo
+            </h2>
+            <p className="mt-3 text-2xl font-bold leading-relaxed">
+              Arraste o arquivo aqui ou clique para escolher.
+            </p>
+            <p className="mt-2 text-xl">Nada será enviado para servidor.</p>
+          </div>
+        </div>
+      </div>
       <input
         ref={inputRef}
         type="file"
@@ -48,13 +69,14 @@ export function FileDropzone({ onFile }: { onFile: (file: File) => void }) {
         aria-label="Escolher arquivo para converter"
         onChange={onInputChange}
       />
-      <button
-        type="button"
-        onClick={() => inputRef.current?.click()}
-        className="mt-6 min-h-16 rounded-md bg-ocean px-8 py-4 text-2xl font-black text-white hover:bg-sky-800"
-      >
-        Escolher arquivo
-      </button>
+      <div className="mt-7">
+        <BigActionButton onClick={() => inputRef.current?.click()} variant="dark">
+          Escolher arquivo
+        </BigActionButton>
+      </div>
+      <p className="mx-auto mt-5 max-w-2xl text-lg font-bold">
+        Use teclado, mouse ou toque na tela. O arquivo fica somente neste navegador.
+      </p>
     </div>
   );
 }

@@ -1,10 +1,19 @@
 import type { ReactNode } from "react";
+import { SectionTitle } from "@/components/SectionTitle";
 
-export function InfoPage({ title, children }: { title: string; children: ReactNode }) {
+export function InfoPage({
+  title,
+  lead,
+  children
+}: {
+  title: string;
+  lead?: string;
+  children: ReactNode;
+}) {
   return (
-    <article className="max-w-4xl space-y-6 rounded-md border-2 border-ink/15 bg-white p-6 text-xl leading-relaxed shadow-sm sm:p-8">
-      <h1 className="text-4xl font-black tracking-normal text-ink sm:text-5xl">{title}</h1>
-      <div className="space-y-5">{children}</div>
+    <article className="mx-auto max-w-7xl space-y-8 px-4 py-10 sm:px-6 lg:py-14">
+      <SectionTitle title={title}>{lead ? <p>{lead}</p> : null}</SectionTitle>
+      <div className="grid gap-5 text-xl leading-relaxed lg:grid-cols-2">{children}</div>
     </article>
   );
 }
