@@ -1,0 +1,11 @@
+
+> docengine@0.1.0 dev
+> next dev --port 3000
+
+▲ Next.js 16.2.9 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://100.86.173.47:3000
+✓ Ready in 796ms
+
+○ Compiling / ...
+ GET / 200 in 7.1s (next.js: 6.8s, application-code: 304ms)
