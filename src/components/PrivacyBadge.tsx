@@ -2,9 +2,9 @@ import { ShieldCheck } from "lucide-react";
 
 export function PrivacyBadge() {
   return (
-    <div className="inline-flex items-center gap-3 rounded-sm border-4 border-black bg-lime px-4 py-3 text-base font-black uppercase tracking-[0.1em] text-black sm:text-lg">
-      <ShieldCheck aria-hidden="true" size={28} />
-      <span>Seus arquivos não saem do seu dispositivo</span>
+    <div className="inline-flex items-center gap-2 rounded-full border border-pink bg-pink px-4 py-2 text-base font-extrabold text-white">
+      <ShieldCheck aria-hidden="true" size={22} />
+      <span>Arquivo local</span>
     </div>
   );
 }

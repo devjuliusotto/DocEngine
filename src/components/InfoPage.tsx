@@ -11,9 +11,9 @@ export function InfoPage({
   children: ReactNode;
 }) {
   return (
-    <article className="mx-auto max-w-7xl space-y-8 px-4 py-10 sm:px-6 lg:py-14">
+    <article className="mx-auto max-w-4xl space-y-8 px-4 py-10 sm:px-6 lg:py-14">
       <SectionTitle title={title}>{lead ? <p>{lead}</p> : null}</SectionTitle>
-      <div className="grid gap-5 text-xl leading-relaxed lg:grid-cols-2">{children}</div>
+      <div className="space-y-5 text-xl leading-relaxed">{children}</div>
     </article>
   );
 }

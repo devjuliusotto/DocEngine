@@ -1,40 +1,54 @@
 import { ConversionWizard } from "@/components/ConversionWizard";
-import { ElderModeNotice } from "@/components/ElderModeNotice";
 import { PrivacyBadge } from "@/components/PrivacyBadge";
-import { BigActionButton } from "@/components/BigActionButton";
+
+const popularFormats = ["PDF", "JPG", "PNG", "WEBP", "MP4", "MP3", "DOCX", "TXT"];
+const privacyItems = ["Local", "Sem login", "Sem cookies", "Sem histórico"];
 
 export default function HomePage() {
   return (
-    <div>
-      <section className="bg-black text-white">
-        <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 sm:px-6 sm:py-14 lg:grid-cols-[1fr_22rem] lg:items-end lg:py-20">
-          <div className="space-y-7">
-            <PrivacyBadge />
-            <h1 className="headline max-w-5xl text-5xl font-black leading-[0.95] text-white sm:text-7xl lg:text-8xl">
-              Converter arquivos
-              <br />
-              com privacidade
+    <div className="bg-black text-white">
+      <section className="mx-auto grid min-h-[calc(100vh-92px)] max-w-7xl gap-8 px-4 py-7 sm:px-6 lg:grid-cols-[0.72fr_1.28fr] lg:items-start lg:py-10">
+        <div className="space-y-6 lg:sticky lg:top-8">
+          <PrivacyBadge />
+          <div className="space-y-3">
+            <h1 className="headline text-5xl font-extrabold uppercase leading-none text-white sm:text-6xl lg:text-7xl">
+              Converta arquivos.
             </h1>
-            <p className="max-w-3xl text-2xl leading-relaxed text-white sm:text-3xl">
-              Simples, gratuito e sem enviar seus arquivos para servidor.
+            <p className="max-w-xl border-l-4 border-pink pl-4 text-xl leading-relaxed text-white/80">
+              Sem upload por padrão. Sem login. Sem rastrear você.
             </p>
-            <div className="flex flex-col gap-3 sm:flex-row">
-              <a
-                href="#converter"
-                className="inline-flex min-h-16 items-center justify-center rounded-sm border-4 border-black bg-lime px-7 py-4 text-xl font-black uppercase tracking-[0.08em] text-black hover:bg-dark-lime focus-visible:shadow-focus sm:text-2xl"
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {privacyItems.map((item) => (
+              <span
+                key={item}
+                className="rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-sm font-extrabold uppercase tracking-[0.04em] text-white"
               >
-                Escolher arquivo
-              </a>
-              <BigActionButton href="/formats" variant="secondary">
-                Ver formatos
-              </BigActionButton>
+                {item}
+              </span>
+            ))}
+          </div>
+        </div>
+        <section id="converter">
+          <ConversionWizard />
+        </section>
+      </section>
+      <section className="border-t border-white/10 bg-dark-gray">
+        <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <h2 className="headline text-3xl font-extrabold">Formatos populares</h2>
+            <div className="flex flex-wrap gap-2">
+              {popularFormats.map((format) => (
+                <span
+                  key={format}
+                  className="rounded-full border border-white/15 bg-black px-4 py-2 text-base font-extrabold text-white"
+                >
+                  {format}
+                </span>
+              ))}
             </div>
           </div>
-          <ElderModeNotice />
         </div>
-      </section>
-      <section id="converter" className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:py-14">
-        <ConversionWizard />
       </section>
     </div>
   );

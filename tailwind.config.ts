@@ -12,6 +12,8 @@ const config: Config = {
         "dark-gray": "#1A1A1A",
         lime: "#CFFF48",
         "dark-lime": "#A6D02F",
+        pink: "#ED145B",
+        "dark-pink": "#B70F45",
         mint: "#4AFFD4",
         "dark-mint": "#1DBF94",
         purple: "#BC9CFF",

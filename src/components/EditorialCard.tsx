@@ -10,14 +10,14 @@ export function EditorialCard({
   tone?: "white" | "gray" | "lime" | "black";
 }) {
   const tones = {
-    white: "bg-white text-black",
-    gray: "bg-soft-gray text-black",
-    lime: "bg-lime text-black",
+    white: "bg-black text-white",
+    gray: "bg-black text-white",
+    lime: "bg-pink text-white",
     black: "bg-black text-white"
   };
 
   return (
-    <section className={`rounded-sm border-4 border-black p-5 sm:p-7 ${tones[tone]} ${className}`}>
+    <section className={`rounded-lg border border-white/15 p-5 sm:p-7 ${tones[tone]} ${className}`}>
       {children}
     </section>
   );

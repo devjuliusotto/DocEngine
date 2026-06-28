@@ -2,14 +2,11 @@ import { Eye } from "lucide-react";
 
 export function ElderModeNotice() {
   return (
-    <aside className="rounded-sm border-4 border-white bg-black p-5 text-white">
-      <div className="flex items-start gap-3">
-        <Eye aria-hidden="true" className="mt-1 text-lime" size={34} />
+    <aside className="inline-flex items-center gap-2 rounded-full border border-mid-gray bg-soft-gray px-4 py-2 text-black">
+      <div className="flex items-center gap-2">
+        <Eye aria-hidden="true" size={22} />
         <div>
-          <h2 className="headline text-2xl font-black">Modo simples ligado</h2>
-          <p className="mt-2 text-xl leading-relaxed text-white/90">
-            Texto grande, botões grandes e apenas três passos.
-          </p>
+          <h2 className="text-base font-extrabold">Modo simples</h2>
         </div>
       </div>
     </aside>

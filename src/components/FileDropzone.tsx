@@ -6,10 +6,16 @@ import { BigActionButton } from "@/components/BigActionButton";
 
 export function FileDropzone({
   onFile,
-  state = "active"
+  state = "active",
+  fileName,
+  fileSize,
+  compact = false
 }: {
   onFile: (file: File) => void;
   state?: "active" | "done" | "future";
+  fileName?: string;
+  fileSize?: string;
+  compact?: boolean;
 }) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -39,27 +45,36 @@ export function FileDropzone({
       }}
       onDragLeave={() => setIsDragging(false)}
       onDrop={onDrop}
-      className={`rounded-sm border-4 border-dashed p-7 text-center transition sm:p-10 ${
+      className={`rounded-lg border-2 border-dashed text-center transition-colors ${
+        compact ? "p-4 sm:p-5" : "p-6 sm:p-9"
+      } ${
         isDragging
-          ? "border-black bg-lime"
+          ? "border-pink bg-pink text-white"
           : state === "done"
-            ? "border-black bg-white"
-            : "border-black bg-soft-gray"
+            ? "border-pink bg-[#111111] text-white"
+            : "border-white/25 bg-[#111111] text-white"
       }`}
     >
       <div className="mx-auto flex max-w-3xl flex-col items-center">
-        <Upload aria-hidden="true" className="text-black" size={64} />
-        <div className="mt-5 flex items-start gap-4 text-left">
-          <span className="headline text-5xl font-black leading-none sm:text-6xl">01</span>
-          <div>
-            <h2 className="headline text-3xl font-black leading-tight sm:text-4xl">
-              Escolher arquivo
-            </h2>
-            <p className="mt-3 text-2xl font-bold leading-relaxed">
-              Arraste o arquivo aqui ou clique para escolher.
-            </p>
-            <p className="mt-2 text-xl">Nada será enviado para servidor.</p>
-          </div>
+        {!compact ? (
+          <Upload
+            aria-hidden="true"
+            className={isDragging ? "text-white" : "text-pink"}
+            size={56}
+          />
+        ) : null}
+        <div className={compact ? "text-center" : "mt-5 text-center"}>
+          <h2 className="headline text-3xl font-extrabold leading-tight sm:text-4xl">
+            {fileName ? "Arquivo selecionado" : "Escolha seu arquivo"}
+          </h2>
+          {!compact ? (
+            <>
+              <p className="mt-3 text-2xl font-bold leading-relaxed">Arraste aqui</p>
+              <p className={isDragging ? "text-xl text-white" : "text-xl text-white/75"}>
+                ou clique no botão abaixo
+              </p>
+            </>
+          ) : null}
         </div>
       </div>
       <input
@@ -69,14 +84,23 @@ export function FileDropzone({
         aria-label="Escolher arquivo para converter"
         onChange={onInputChange}
       />
-      <div className="mt-7">
-        <BigActionButton onClick={() => inputRef.current?.click()} variant="dark">
-          Escolher arquivo
+      <div className={compact ? "mt-4" : "mt-7"}>
+        <BigActionButton onClick={() => inputRef.current?.click()} variant="primary">
+          {fileName ? "Trocar arquivo" : "Escolher arquivo"}
         </BigActionButton>
       </div>
-      <p className="mx-auto mt-5 max-w-2xl text-lg font-bold">
-        Use teclado, mouse ou toque na tela. O arquivo fica somente neste navegador.
-      </p>
+      {fileName ? (
+        <div className="mx-auto mt-4 max-w-2xl rounded-md border border-white/20 bg-black p-4 text-left">
+          <p className="text-lg font-extrabold">Arquivo escolhido</p>
+          <p className="mt-1 break-words text-xl">{fileName}</p>
+          {fileSize ? <p className="mt-1 text-lg text-white/70">{fileSize}</p> : null}
+        </div>
+      ) : null}
+      {!compact ? (
+        <p className="mx-auto mt-5 max-w-2xl text-lg font-bold text-white/85">
+          PDF, imagens, áudio, vídeo e documentos. Seu arquivo fica no seu dispositivo.
+        </p>
+      ) : null}
     </div>
   );
 }
